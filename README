@@ -13,5 +13,8 @@ ob-sysinfo.pl		dummy menu that prints user@host, distro, kernel
 thunar-bookmarks.pl	duplicates thunar's bookmarks, or any program using
 			the .gtk-bookmarks file
 
+pcmanfm-bookmarks.pl	works around a quirk that PCManFM writes in the
+			.gtk-bookmarks file
+
 For more info, visit:
 http://openbox.org/wiki/Openbox:Pipemenus
