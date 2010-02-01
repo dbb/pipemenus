@@ -1,14 +1,15 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
+use autodie;
 use File::Basename;
 
 # dbbolton
 # danielbarrettbolton@gmail.com
 
 my $filemanager = "thunar";
-my $bookmarks = "$ENV{HOME}/.gtk-bookmarks";
-open(my $in, "<", "$bookmarks") or die "Can't ($bookmarks): $!";
+my $bookmarks_file = "$ENV{HOME}/.gtk-bookmarks";
+open(my $in, "<", "$bookmarks_file");
 
 my @lines = <$in>;
 chomp(@lines);
@@ -52,7 +53,7 @@ print "</item>\n";
 
 print "<separator />\n";
 
-# User-specified bookamrks ############
+# User-specified bookmarks ############
 foreach (@lines) {
     my $label = basename $_;
     
@@ -64,7 +65,5 @@ foreach (@lines) {
     print " </action>\n";
     print "</item>\n";
 }
-
 print "</openbox_pipe_menu>\n";
-
-close $in or die "$in: $!";
+close $in;

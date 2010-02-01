@@ -7,8 +7,8 @@ use File::Basename;
 # dbbolton
 # danielbarrettbolton@gmail.com
 
-my $filemanager = "pcmanfm";
-my $bookmarks_file = "$ENV{HOME}/pcmanfm";
+my $filemanager = "thunar";
+my $bookmarks_file = "$ENV{HOME}/.gtk-bookmarks";
 open(my $in, "<", "$bookmarks_file");
 
 my @lines = <$in>;
@@ -53,9 +53,12 @@ print "</item>\n";
 
 print "<separator />\n";
 
-# User-specified bookamrks ############
+# User-specified bookmarks ############
+my $label;
 foreach (@lines) {
-    print "<item label=\"".(split / /, $_)[1]."\">\n";
+    $label = basename $_;
+    
+    print "<item label=\"$label\">\n";
     print " <action name=\"Execute\">\n";
     print "  <execute>\n";
     print "   ".$filemanager." ".(split / /, $_)[0]."\n";
@@ -63,7 +66,5 @@ foreach (@lines) {
     print " </action>\n";
     print "</item>\n";
 }
-
 print "</openbox_pipe_menu>\n";
-
 close $in;
