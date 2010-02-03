@@ -4,21 +4,20 @@ use warnings;
 use autodie;
 use File::Basename;
 
-# dbbolton
+# written by dbbolton
 # danielbarrettbolton@gmail.com
 
 my $filemanager = "thunar";
 my $bookmarks_file = "$ENV{HOME}/.gtk-bookmarks";
-open(my $in, "<", "$bookmarks_file");
+open(my $in, "<", $bookmarks_file);
 
-my @lines = <$in>;
-chomp(@lines);
+chomp(my @lines = <$in>);
 
-# Heading #############################
+# Heading #################################################################
 print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 print "<openbox_pipe_menu>\n";
 
-# Default bookmarks in thunar #########
+# Default bookmarks in thunar ##############################################
 print "<item label=\"$ENV{USER}\">\n";
 print " <action name=\"Execute\">\n";
 print "  <execute>\n";
@@ -53,7 +52,7 @@ print "</item>\n";
 
 print "<separator />\n";
 
-# User-specified bookmarks ############
+# User-specified bookmarks ################################################
 my $label;
 my $uri;
 foreach (@lines) {
