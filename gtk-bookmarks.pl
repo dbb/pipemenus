@@ -8,7 +8,7 @@ use File::Basename;
 # danielbarrettbolton@gmail.com
 
 my $filemanager = "thunar";
-my $bookmarks_file = "$ENV{HOME}/.gtk-bookmarks";
+my $bookmarks_file = "$ENV{HOME}/pcmanfm";
 open(my $in, "<", "$bookmarks_file");
 
 my @lines = <$in>;
@@ -22,7 +22,7 @@ print "<openbox_pipe_menu>\n";
 print "<item label=\"$ENV{USER}\">\n";
 print " <action name=\"Execute\">\n";
 print "  <execute>\n";
-print "   ".$filemanager." $ENV{HOME} \n";
+print "   $filemanager $ENV{HOME} \n";
 print "  </execute>\n";
 print " </action>\n";
 print "</item>\n";
@@ -30,7 +30,7 @@ print "</item>\n";
 print "<item label=\"Trash\">\n";
 print " <action name=\"Execute\">\n";
 print "  <execute>\n";
-print "   ".$filemanager." trash:// \n";
+print "   $filemanager trash:// \n";
 print "  </execute>\n";
 print " </action>\n";
 print "</item>\n";
@@ -38,7 +38,7 @@ print "</item>\n";
 print "<item label=\"Desktop\">\n";
 print " <action name=\"Execute\">\n";
 print "  <execute>\n";
-print "   ".$filemanager." /home/$ENV{USER}/Desktop \n";
+print "   $filemanager /home/$ENV{USER}/Desktop \n";
 print "  </execute>\n";
 print " </action>\n";
 print "</item>\n";
@@ -46,7 +46,7 @@ print "</item>\n";
 print "<item label=\"File System\">\n";
 print " <action name=\"Execute\">\n";
 print "  <execute>\n";
-print "   ".$filemanager." / \n";
+print "   $filemanager / \n";
 print "  </execute>\n";
 print " </action>\n";
 print "</item>\n";
@@ -55,13 +55,16 @@ print "<separator />\n";
 
 # User-specified bookmarks ############
 my $label;
+my $uri;
 foreach (@lines) {
-    $label = basename $_;
-    
+    # Workaround for pcmanfm's extra name after the URI
+    $label = basename $_ // (split / /, $_)[1];
+    $uri = (split / /, $_)[0];
+      
     print "<item label=\"$label\">\n";
     print " <action name=\"Execute\">\n";
     print "  <execute>\n";
-    print "   ".$filemanager." ".(split / /, $_)[0]."\n";
+    print "   $filemanager $uri \n";
     print "  </execute>\n";
     print " </action>\n";
     print "</item>\n";
