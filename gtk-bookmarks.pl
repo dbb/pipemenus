@@ -8,7 +8,7 @@ use File::Basename;
 # danielbarrettbolton@gmail.com
 
 my $filemanager = "thunar";
-my $bookmarks_file = "$ENV{HOME}/pcmanfm";
+my $bookmarks_file = "$ENV{HOME}/.gtk-bookmarks";
 open(my $in, "<", "$bookmarks_file");
 
 my @lines = <$in>;
