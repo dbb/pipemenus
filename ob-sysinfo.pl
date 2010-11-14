@@ -45,7 +45,7 @@ while (<$meminfo>) {
 }
 close $meminfo;
 
-# Openbox theme ----------------------------------------------------------------------------
+# Openbox theme ------------------------------------------------------------
 my $file = "$ENV{HOME}/.config/openbox/rc.xml";
 my $xs1 = XML::Simple->new();
 my $doc = $xs1->XMLin($file);
@@ -64,16 +64,16 @@ my $uptime = (split ' ', `uptime`)[0];
 
 # Writing the pipemenu -----------------------------------------------------
 
-print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-print "<openbox_pipe_menu>\n";
-print "<item label=\"+        $ENV{USER}\@$host        +\" />\n";
-print "<separator />";
-print "<item label=\"OS:      $distro $os $machine \" />\n";
-print "<item label=\"Kernel:  $kernel \" />\n";
-print "<item label=\"Uptime:  $uptime \" />\n";
-print "<item label=\"Load:    $load \" />\n";
-print "<item label=\"Mem:     $mem_act MB\" />\n";
-print "<item label=\"Theme:   $obtheme \" />\n";
-print "<separator />";
-print "<item label=\"+        $time_date       +\" />\n";
-print "</openbox_pipe_menu>\n";
+print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+    . "<openbox_pipe_menu>\n"
+    . "<item label=\"+        $ENV{USER}\@$host        +\" />\n"
+    . "<separator />"
+    . "<item label=\"OS:      $distro $os $machine \" />\n"
+    . "<item label=\"Kernel:  $kernel \" />\n"
+    . "<item label=\"Uptime:  $uptime \" />\n"
+    . "<item label=\"Load:    $load \" />\n"
+    . "<item label=\"Mem:     $mem_act MB\" />\n"
+    . "<item label=\"Theme:   $obtheme \" />\n"
+    . "<separator />"
+    . "<item label=\"+        $time_date       +\" />\n"
+    . "</openbox_pipe_menu>\n";
