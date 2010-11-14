@@ -13,17 +13,18 @@ foreach my $key (@{$places->{bookmark}}) {
   $menu_items{$key->{'title'}[0]} = $key->{'href'};
 }
 
-print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-print "<openbox_pipe_menu>\n";
+print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+    . "<openbox_pipe_menu>\n";
 
 foreach my $key (sort keys %menu_items) {
-  print "<item label=\"".$key."\">\n";
-  print " <action name=\"Execute\">\n";
-  print "  <execute>\n";
-  print "   ".$file_manager." ".$menu_items{$key}."\n";
-  print "  </execute>\n";
-  print " </action>\n";
-  print "</item>\n";
+  print "<item label=\"".$key."\">\n"
+      . " <action name=\"Execute\">\n"
+      . "  <execute>\n"
+      . "   ".$file_manager." ".$menu_items{$key}."\n"
+      . "  </execute>\n"
+      . " </action>\n"
+      . "</item>\n";
 }
 
 print "</openbox_pipe_menu>\n";
+

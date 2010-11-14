@@ -15,55 +15,56 @@ my @lines = <$in>;
 chomp(@lines);
 
 # Heading #############################
-print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-print "<openbox_pipe_menu>\n";
+print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+    . "<openbox_pipe_menu>\n"
 
 # Default bookmarks in thunar #########
-print "<item label=\"".$ENV{USER}."\">\n";
-print " <action name=\"Execute\">\n";
-print "  <execute>\n";
-print "   ".$filemanager." $ENV{HOME} \n";
-print "  </execute>\n";
-print " </action>\n";
-print "</item>\n";
+    . "<item label=\"".$ENV{USER}."\">\n"
+    . " <action name=\"Execute\">\n"
+    . "  <execute>\n"
+    . "   ".$filemanager." $ENV{HOME} \n"
+    . "  </execute>\n"
+    . " </action>\n"
+    . "</item>\n"
 
-print "<item label=\"Trash\">\n";
-print " <action name=\"Execute\">\n";
-print "  <execute>\n";
-print "   ".$filemanager." trash:// \n";
-print "  </execute>\n";
-print " </action>\n";
-print "</item>\n";
+    . "<item label=\"Trash\">\n"
+    . " <action name=\"Execute\">\n"
+    . "  <execute>\n"
+    . "   ".$filemanager." trash:// \n"
+    . "  </execute>\n"
+    . " </action>\n"
+    . "</item>\n"
 
-print "<item label=\"Desktop\">\n";
-print " <action name=\"Execute\">\n";
-print "  <execute>\n";
-print "   ".$filemanager." /home/$ENV{USER}/Desktop \n";
-print "  </execute>\n";
-print " </action>\n";
-print "</item>\n";
+    . "<item label=\"Desktop\">\n"
+    . " <action name=\"Execute\">\n"
+    . "  <execute>\n"
+    . "   ".$filemanager." /home/$ENV{USER}/Desktop \n"
+    . "  </execute>\n"
+    . " </action>\n"
+    . "</item>\n"
 
-print "<item label=\"File System\">\n";
-print " <action name=\"Execute\">\n";
-print "  <execute>\n";
-print "   ".$filemanager." / \n";
-print "  </execute>\n";
-print " </action>\n";
-print "</item>\n";
+    . "<item label=\"File System\">\n"
+    . " <action name=\"Execute\">\n"
+    . "  <execute>\n"
+    . "   ".$filemanager." / \n"
+    . "  </execute>\n"
+    . " </action>\n"
+    . "</item>\n"
 
-print "<separator />\n";
+    . "<separator />\n";
 
 # User-specified bookmarks ############
-foreach (@lines) {
+for (@lines) {
     my $label = basename $_;
     
-    print "<item label=\"".$label."\">\n";
-    print " <action name=\"Execute\">\n";
-    print "  <execute>\n";
-    print "   ".$filemanager." ".$_."\n";
-    print "  </execute>\n";
-    print " </action>\n";
-    print "</item>\n";
+    print "<item label=\"".$label."\">\n"
+        . " <action name=\"Execute\">\n"
+        . "  <execute>\n"
+        . "   ".$filemanager." ".$_."\n"
+        . "  </execute>\n"
+        . " </action>\n"
+        . "</item>\n";
 }
 print "</openbox_pipe_menu>\n";
 close $in;
+
