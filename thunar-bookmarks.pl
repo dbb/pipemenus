@@ -11,8 +11,7 @@ my $filemanager = "thunar";
 my $bookmarks_file = "$ENV{HOME}/.gtk-bookmarks";
 open(my $in, "<", "$bookmarks_file");
 
-my @lines = <$in>;
-chomp(@lines);
+chomp( my @lines = <$in> );
 
 # Heading #############################
 print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -38,7 +37,7 @@ print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
     . "<item label=\"Desktop\">\n"
     . " <action name=\"Execute\">\n"
     . "  <execute>\n"
-    . "   ".$filemanager." /home/$ENV{USER}/Desktop \n"
+    . "   ".$filemanager." $ENV{HOME}/Desktop \n"
     . "  </execute>\n"
     . " </action>\n"
     . "</item>\n"
@@ -55,6 +54,7 @@ print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 
 # User-specified bookmarks ############
 for (@lines) {
+    s/\s+.*$//;
     my $label = basename $_;
     
     print "<item label=\"".$label."\">\n"
